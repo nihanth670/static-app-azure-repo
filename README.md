@@ -30,6 +30,32 @@ This project demonstrates how to deploy a static website on Azure using Bicep te
    - The primary endpoint URL of the static website hosted on the storage account. Use this URL to access the website after deployment.
    - **Example Value:** `"https://mystorageaccount123.z13.web.core.windows.net/"`
 
+## Providing Values to the Bicep Template
+
+You can provide values to the Bicep template either by using a parameters file (`parameters.json`) or by passing the parameters directly via the Azure CLI.
+
+### 1. Using a Parameters File
+
+To use a parameters file, create a `parameters.json` file in the `infrastructure` directory with the following content:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "East US"
+    },
+    "storageAccountName": {
+      "value": "mystorageaccount123"
+    },
+    "containerName": {
+      "value": "staticfiles"
+    }
+  }
+}
+
+
 
 ## Directory Structure
 
