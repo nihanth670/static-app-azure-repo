@@ -29,12 +29,27 @@ This project demonstrates how to deploy a static website on Azure using Bicep te
 2. **`storageAccountUrl`** (string)
    - The primary endpoint URL of the static website hosted on the storage account. Use this URL to access the website after deployment.
    - **Example Value:** `"https://mystorageaccount123.z13.web.core.windows.net/"`
+  
+
+## Directory Structure
+
+```plaintext
+├── .azure-pipelines
+│   └── azure-pipelines.yml         # Azure DevOps pipeline configuration
+├── infrastructure
+│   ├── main.bicep                  # Bicep template for Azure resources
+│   └── parameters.json             # Parameters file for Bicep template
+├── static-website
+│   ├── index.html                  # Main HTML file for the static website
+│   ├── style.css                   # CSS file for styling
+│   └── 404.html                    # Custom 404 error page
+└── README.md                       # This file
+```
 
 ## Providing Values to the Bicep Template
 
-You can provide values to the Bicep template either by using a parameters file (`parameters.json`) or by passing the parameters directly via the Azure CLI.
-
-### 1. Using a Parameters File
+You can provide values to the Bicep template either by using a parameters file (`parameters.json`)
+### Using a Parameters File
 
 To use a parameters file, create a `parameters.json` file in the `infrastructure` directory with the following content:
 
@@ -55,18 +70,3 @@ To use a parameters file, create a `parameters.json` file in the `infrastructure
   }
 }
 
-
-
-## Directory Structure
-
-```plaintext
-├── .azure-pipelines
-│   └── azure-pipelines.yml         # Azure DevOps pipeline configuration
-├── infrastructure
-│   ├── main.bicep                  # Bicep template for Azure resources
-│   └── parameters.json             # Parameters file for Bicep template
-├── static-website
-│   ├── index.html                  # Main HTML file for the static website
-│   ├── style.css                   # CSS file for styling
-│   └── 404.html                    # Custom 404 error page
-└── README.md                       # This file
