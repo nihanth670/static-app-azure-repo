@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: '<Your-Service-Connection>'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az deployment group create --resource-group <Your-Resource-Group> --template-file main.bicep --parameters @parameters.json
+  displayName: 'Deploy ARM/Bicep Template'
+
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: '<Your-Service-Connection>'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az storage blob upload-batch -d '$web' -s ./static-website --account-name <Your-Storage-Account-Name>
+  displayName: 'Upload Static Website Files'
